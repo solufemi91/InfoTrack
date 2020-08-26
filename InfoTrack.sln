@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoTrack", "InfoTrack\InfoTrack.csproj", "{005DE74E-C5F4-410C-9286-A7BF4E705998}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{005DE74E-C5F4-410C-9286-A7BF4E705998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{005DE74E-C5F4-410C-9286-A7BF4E705998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{005DE74E-C5F4-410C-9286-A7BF4E705998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{005DE74E-C5F4-410C-9286-A7BF4E705998}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F7A1A719-848D-4CCB-952F-F594119B5E5F}
+	EndGlobalSection
+EndGlobal
