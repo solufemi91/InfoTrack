@@ -8,6 +8,6 @@ namespace InfoTrack.Repository
 {
     public interface IGoogleSearchResultsRepository
     {
-        string GetSearchResultsHtml(string keywords = "land+registry+search", string number = "100");
+        string GetSearchResultsHtml(string keywords = "land+registry+search", int number = 10);
     }
 }
