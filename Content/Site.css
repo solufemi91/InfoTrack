@@ -22,3 +22,48 @@ select,
 textarea {
     max-width: 280px;
 }
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: 'Helvetica';
+    border: 1px solid blue;
+    background: white;
+}
+
+textarea {
+    max-width: 280px;
+}
+
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+#formContainer {
+    padding: 0px 20px 20px 20px;
+    background: #4662e8
+}
+
+
+#myForm {
+    text-align: center;
+}
+
+#resultsBox {
+    border-style: solid;
+    height: 100px;
+    width: 50%;
+    margin: auto;
+}
+
+#title {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}

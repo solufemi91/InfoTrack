@@ -26,7 +26,10 @@ namespace InfoTrack.Wrapper
             var targetedUrlList = FilterTargetedUrls(scrappedGoogleLinkTags, url);
 
 
-            return CreateOrderedPositionList(targetedUrlList);
+            var orderedPositionList = CreateOrderedPositionList(targetedUrlList);
+
+            return orderedPositionList == string.Empty ? "No Results found in the top 100" : orderedPositionList;
+            //return "1,2";
         }
 
         private string StringBuilder(string keywords)
@@ -45,7 +48,7 @@ namespace InfoTrack.Wrapper
 
         private IEnumerable<GoogleLinks> FilterTargetedUrls(IEnumerable<Match> scrappedGoogleLinkTags, string url)
         {
-            return scrappedGoogleLinkTags.Select((m, i) => new GoogleLinks { Html = m.Value, Index = i })
+            return scrappedGoogleLinkTags.Select((m, i) => new GoogleLinks { Html = m?.Value, Index = i })
               .Where(x => x.Html.Contains(url));
         }
 

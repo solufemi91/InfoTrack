@@ -15,8 +15,12 @@ class formComponent extends React.Component {
                 <label htmlFor="Url">Url:</label>
                 <input type="text" id="Url" name="Url"></input><br></br>
 
-                <input onClick={this.props.search} defaultValue="Submit"></input><br></br>
-                <input type="text" id="Result" name="Result" value={this.props.numberPositions} readOnly></input>
+                <button type="button" onClick={this.props.search}>Search</button>
+                <div id="resultsBoxContainer" style={{ display: this.props.numberPositions ? "block" : "none" }}>
+                    <h4>Results Box:</h4>
+                    <div id="resultsBox">{this.props.numberPositions}</div>
+                </div>
+               
             </form>
         );
     }

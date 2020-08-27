@@ -9,11 +9,11 @@ namespace InfoTrack.Repository
     public class GoogleSearchResultsRepository : IGoogleSearchResultsRepository
     {
 
-        public string GetSearchResultsHtml(string keywords, int number = 10)
+        public string GetSearchResultsHtml(string keywords)
         {
             var client = new HttpClient();
         
-            return client.GetStringAsync($"https://www.google.co.uk/search?num={number}&q={keywords}").Result;
+            return client.GetStringAsync($"https://www.google.co.uk/search?num={100}&q={keywords}").Result;
         }
 
     }
