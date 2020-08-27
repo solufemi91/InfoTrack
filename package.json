@@ -1,0 +1,36 @@
+{
+  "name": "infotrack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/runtime": "^7.9.6",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "bufferutil": "^4.0.1",
+    "copy-webpack-plugin": "^6.0.1",
+    "moment": "^2.26.0",
+    "react-dom": "^16.11.0",
+    "react-native": "^0.62.2",
+    "redux": "^4.0.5",
+    "utf-8-validate": "^5.0.2",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.5",
+    "eslint": "^4.0.0",
+    "eslint-plugin-react-hooks": "^4.0.2",
+    "react": "^16.11.0",
+    "react-redux": "^7.2.0",
+    "webpack": "^4.43.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wbp": "webpack ./src/index.js ./dist/bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
