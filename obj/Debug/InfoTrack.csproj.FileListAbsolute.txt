@@ -95,7 +95,6 @@ C:\Users\HP\Desktop\MyNewRepoFolder\InfoTrack\bin\Microsoft.Extensions.Dependenc
 C:\Users\HP\Desktop\MyNewRepoFolder\InfoTrack\bin\Microsoft.Extensions.Options.xml
 C:\Users\HP\Desktop\MyNewRepoFolder\InfoTrack\bin\Microsoft.Extensions.Primitives.xml
 C:\Users\HP\Desktop\MyNewRepoFolder\InfoTrack\bin\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\HP\Desktop\MyNewRepoFolder\InfoTrack\obj\Debug\InfoTrack.csprojAssemblyReference.cache
 C:\Users\HP\source\repos\InfoTrack\bin\InfoTrack.dll.config
 C:\Users\HP\source\repos\InfoTrack\bin\InfoTrack.dll
 C:\Users\HP\source\repos\InfoTrack\bin\InfoTrack.pdb
