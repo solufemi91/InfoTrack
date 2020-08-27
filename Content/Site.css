@@ -60,6 +60,7 @@ textarea {
     height: 100px;
     width: 50%;
     margin: auto;
+    overflow-wrap: break-word;
 }
 
 #title {
