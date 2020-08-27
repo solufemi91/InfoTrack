@@ -16,7 +16,7 @@ const submitDataToServer = (dispatch) => {
         alert('Oops! Something went wrong.');
     });
 
-    XHR.open("POST", "http://dev.mygooglesearchposition.com/GoogleSearchPositionData/ReturnOrderingPositions");
+    XHR.open("POST", "http://localhost:50756/GoogleSearchPositionData/ReturnOrderingPositions");
 
     XHR.send(FD)
 }
