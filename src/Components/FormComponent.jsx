@@ -20,8 +20,10 @@ class formComponent extends React.Component {
                     <h4>Results Box:</h4>
                     <div id="resultsBox">{this.props.numberPositions}</div>
                 </div>
-               
+                <div class="loader" style={{ display: this.props.showSpinner ? "block" : "none" }}></div>
             </form>
+
+            
         );
     }
 
