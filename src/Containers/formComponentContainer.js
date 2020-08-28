@@ -2,6 +2,7 @@
 import formComponent from '../Components/FormComponent';
 
 const submitDataToServer = (dispatch) => {
+    dispatch({ type: 'LOADERSPINNER', showSpinner: true })
     const form = document.getElementById("myForm");
     const XHR = new XMLHttpRequest();
 
@@ -9,10 +10,12 @@ const submitDataToServer = (dispatch) => {
 
     XHR.addEventListener("load", function (event) {
         let result = event.target.responseText;
+        dispatch({ type: 'LOADERSPINNER', showSpinner: false })
         dispatch({ type: 'STORENUMBERPOSITIONS', numberPositions: result })
     });
 
     XHR.addEventListener("error", function (event) {
+        dispatch({ type: 'LOADERSPINNER', showSpinner: false })
         alert('Oops! Something went wrong.');
     });
 
@@ -32,7 +35,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        numberPositions: state.NumberPositions
+        numberPositions: state.NumberPositions,
+        showSpinner: state.ShowSpinner
     }
 }
 
