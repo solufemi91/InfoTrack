@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Web.Configuration;
 
 namespace InfoTrack.Repository
 {
@@ -8,9 +9,10 @@ namespace InfoTrack.Repository
 
         public string GetSearchResultsHtml(string keywords)
         {
+            var googleUrl = WebConfigurationManager.AppSettings["GoogleUrl"];
             var client = new HttpClient();
         
-            return client.GetStringAsync($"https://www.google.co.uk/search?num={100}&q={keywords}").Result;
+            return client.GetStringAsync($"{googleUrl}num={100}&q={keywords}").Result;
         }
 
     }
