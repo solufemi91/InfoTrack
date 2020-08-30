@@ -1,5 +1,6 @@
 ﻿using InfoTrack.Models;
 using InfoTrack.Wrapper;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace InfoTrack.Api
@@ -15,9 +16,9 @@ namespace InfoTrack.Api
         }
 
         [HttpPost]
-        public string ReturnOrderingPositions(FormRequest formRequest)
+        public async Task<string> ReturnOrderingPositionsAsync(FormRequest formRequest)
         {
-            return _scrappingWrapper.GetOrderingPositions(formRequest.Keywords, formRequest.Url);
+            return await _scrappingWrapper.GetOrderingPositionsAsync(formRequest.Keywords, formRequest.Url);
         }
     }
 }

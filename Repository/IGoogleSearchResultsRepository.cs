@@ -8,6 +8,6 @@ namespace InfoTrack.Repository
 {
     public interface IGoogleSearchResultsRepository
     {
-        string GetSearchResultsHtml(string keywords);
+        Task<string> GetSearchResultsHtmlAsync(string keywords);
     }
 }

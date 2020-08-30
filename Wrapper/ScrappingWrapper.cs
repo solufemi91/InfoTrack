@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 
@@ -19,10 +20,10 @@ namespace InfoTrack.Wrapper
             _googleSearchResultsRepository = googleSearchResultsRepository;
         }
 
-        public string GetOrderingPositions(string keywords, string url)
+        public async Task<string> GetOrderingPositionsAsync(string keywords, string url)
         {
             var editedString = StringBuilder(keywords);
-            var googleResults = _googleSearchResultsRepository.GetSearchResultsHtml(editedString);
+            var googleResults = await _googleSearchResultsRepository.GetSearchResultsHtmlAsync(editedString);
             var scrappedGoogleLinkTags = ScrapeGoogleLinkTags(googleResults);
             var targetedUrlList = FilterTargetedUrls(scrappedGoogleLinkTags, url);
 
