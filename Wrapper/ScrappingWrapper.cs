@@ -29,7 +29,6 @@ namespace InfoTrack.Wrapper
             var orderedPositionList = CreateOrderedPositionList(targetedUrlList);
 
             return orderedPositionList == string.Empty ? "No Results found in the top 100" : orderedPositionList;
-            //return "1,2";
         }
 
         private string StringBuilder(string keywords)
