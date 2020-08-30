@@ -31,13 +31,13 @@ namespace InfoTrack.Wrapper
             return orderedPositionList == string.Empty ? "No Results found in the top 100" : orderedPositionList;
         }
 
-        private string StringBuilder(string keywords)
+        public string StringBuilder(string keywords)
         {
             var result = Regex.Replace(keywords, "\\s+", "+");
             return result;
         }
 
-        private IEnumerable<Match> ScrapeGoogleLinkTags(string googleResults)
+        public IEnumerable<Match> ScrapeGoogleLinkTags(string googleResults)
         {
             var htmlToMatch = @"<div class=""kCrYT""><a href(.+?)<h3";
 
@@ -45,13 +45,13 @@ namespace InfoTrack.Wrapper
             return regexMatches.Cast<Match>();
         }
 
-        private IEnumerable<GoogleLinks> FilterTargetedUrls(IEnumerable<Match> scrappedGoogleLinkTags, string url)
+        public IEnumerable<GoogleLinks> FilterTargetedUrls(IEnumerable<Match> scrappedGoogleLinkTags, string url)
         {
             return scrappedGoogleLinkTags.Select((m, i) => new GoogleLinks { Html = m?.Value, Index = i })
               .Where(x => x.Html.Contains(url));
         }
 
-        private string CreateOrderedPositionList(IEnumerable<GoogleLinks> googleLinks)
+        public string CreateOrderedPositionList(IEnumerable<GoogleLinks> googleLinks)
         {
             var arrayOfOrderPositions = googleLinks.Select(x => x.Index + 1);
 
