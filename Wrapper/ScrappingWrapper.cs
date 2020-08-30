@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Configuration;
 
 namespace InfoTrack.Wrapper
 {
@@ -39,7 +40,7 @@ namespace InfoTrack.Wrapper
 
         public IEnumerable<Match> ScrapeGoogleLinkTags(string googleResults)
         {
-            var htmlToMatch = @"<div class=""kCrYT""><a href(.+?)<h3";
+            var htmlToMatch = WebConfigurationManager.AppSettings["HtmlToMatch"];
 
             var regexMatches = Regex.Matches(googleResults, htmlToMatch);
             return regexMatches.Cast<Match>();
