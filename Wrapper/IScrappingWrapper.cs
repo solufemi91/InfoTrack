@@ -8,6 +8,6 @@ namespace InfoTrack.Wrapper
 {
     public interface IScrappingWrapper
     {
-        string GetOrderingPositions(string keywords, string url);
+        Task<string> GetOrderingPositionsAsync(string keywords, string url);
     }
 }

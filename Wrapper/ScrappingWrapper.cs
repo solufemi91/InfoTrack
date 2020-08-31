@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 
 namespace InfoTrack.Wrapper
 {
@@ -18,10 +20,10 @@ namespace InfoTrack.Wrapper
             _googleSearchResultsRepository = googleSearchResultsRepository;
         }
 
-        public string GetOrderingPositions(string keywords, string url)
+        public async Task<string> GetOrderingPositionsAsync(string keywords, string url)
         {
             var editedString = StringBuilder(keywords);
-            var googleResults = _googleSearchResultsRepository.GetSearchResultsHtml(editedString);
+            var googleResults = await _googleSearchResultsRepository.GetSearchResultsHtmlAsync(editedString);
             var scrappedGoogleLinkTags = ScrapeGoogleLinkTags(googleResults);
             var targetedUrlList = FilterTargetedUrls(scrappedGoogleLinkTags, url);
 
@@ -29,30 +31,29 @@ namespace InfoTrack.Wrapper
             var orderedPositionList = CreateOrderedPositionList(targetedUrlList);
 
             return orderedPositionList == string.Empty ? "No Results found in the top 100" : orderedPositionList;
-            //return "1,2";
         }
 
-        private string StringBuilder(string keywords)
+        public string StringBuilder(string keywords)
         {
             var result = Regex.Replace(keywords, "\\s+", "+");
             return result;
         }
 
-        private IEnumerable<Match> ScrapeGoogleLinkTags(string googleResults)
+        public IEnumerable<Match> ScrapeGoogleLinkTags(string googleResults)
         {
-            var htmlToMatch = @"<div class=""kCrYT""><a href(.+?)<h3";
+            var htmlToMatch = WebConfigurationManager.AppSettings["HtmlToMatch"];
 
             var regexMatches = Regex.Matches(googleResults, htmlToMatch);
             return regexMatches.Cast<Match>();
         }
 
-        private IEnumerable<GoogleLinks> FilterTargetedUrls(IEnumerable<Match> scrappedGoogleLinkTags, string url)
+        public IEnumerable<GoogleLinks> FilterTargetedUrls(IEnumerable<Match> scrappedGoogleLinkTags, string url)
         {
             return scrappedGoogleLinkTags.Select((m, i) => new GoogleLinks { Html = m?.Value, Index = i })
               .Where(x => x.Html.Contains(url));
         }
 
-        private string CreateOrderedPositionList(IEnumerable<GoogleLinks> googleLinks)
+        public string CreateOrderedPositionList(IEnumerable<GoogleLinks> googleLinks)
         {
             var arrayOfOrderPositions = googleLinks.Select(x => x.Index + 1);
 
