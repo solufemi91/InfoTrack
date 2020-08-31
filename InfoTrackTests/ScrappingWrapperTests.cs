@@ -1,13 +1,13 @@
-﻿using System;
+﻿using FluentAssertions;
+using InfoTrack;
 using InfoTrack.Repository;
 using InfoTrack.Wrapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using FluentAssertions;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Moq;
 using Match = System.Text.RegularExpressions.Match;
+using System.Linq;
 
 namespace InfoTrackTests
 {
@@ -17,13 +17,16 @@ namespace InfoTrackTests
         private Mock<IGoogleSearchResultsRepository> _googleSearchResultsRepositoryMock;
         private ScrappingWrapper _sut;
         private string _targetedUrl;
+        private Mock<IAppSettings> _appSettingsMock;
 
         [TestInitialize]
         public void Setup()
         {
             _googleSearchResultsRepositoryMock = new Mock<IGoogleSearchResultsRepository>();
-            _sut = new ScrappingWrapper(_googleSearchResultsRepositoryMock.Object);
+            _appSettingsMock = new Mock<IAppSettings>();
+            _sut = new ScrappingWrapper(_appSettingsMock.Object, _googleSearchResultsRepositoryMock.Object);
             _targetedUrl = "www.infotrack.co.uk";
+            SetupAppSettingsMock();
         }
 
 
@@ -34,7 +37,7 @@ namespace InfoTrackTests
             var expectedResult = "land+search+registry";
 
             var result = _sut.StringBuilder(keyWords);
-        
+
             result.Should().Be(expectedResult);
         }
 
@@ -71,13 +74,19 @@ namespace InfoTrackTests
 
             result.Should().Be("2,3");
 
+        }
 
+        private void SetupAppSettingsMock()
+        {
+            var htmlToMatch = @"<div class=""kCrYT""><a href(.+?)<h3";
+
+            _appSettingsMock.Setup(x => x.HtmlToMatch).Returns(htmlToMatch);
         }
 
         private IEnumerable<Match> GetScrapedGoogleLinkTagsData()
         {
             var googleResults = HtmlBuilder();
-            return  _sut.ScrapeGoogleLinkTags(googleResults);
+            return _sut.ScrapeGoogleLinkTags(googleResults);
         }
 
         private string HtmlBuilder()
@@ -88,5 +97,6 @@ namespace InfoTrackTests
                         class=""zBAuLc""</div><body><html>";
             return html;
         }
+
     }
 }
