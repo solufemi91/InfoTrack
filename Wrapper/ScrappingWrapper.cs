@@ -12,25 +12,32 @@ namespace InfoTrack.Wrapper
 {
     public class ScrappingWrapper : IScrappingWrapper
     {
+        private readonly IAppSettings _appSettings;
         private readonly IGoogleSearchResultsRepository _googleSearchResultsRepository;
         
-
-        public ScrappingWrapper(IGoogleSearchResultsRepository googleSearchResultsRepository)
+        public ScrappingWrapper(IAppSettings appSettings, IGoogleSearchResultsRepository googleSearchResultsRepository)
         {
+            _appSettings = appSettings;
             _googleSearchResultsRepository = googleSearchResultsRepository;
         }
 
         public async Task<string> GetOrderingPositionsAsync(string keywords, string url)
         {
-            var editedString = StringBuilder(keywords);
-            var googleResults = await _googleSearchResultsRepository.GetSearchResultsHtmlAsync(editedString);
-            var scrappedGoogleLinkTags = ScrapeGoogleLinkTags(googleResults);
-            var targetedUrlList = FilterTargetedUrls(scrappedGoogleLinkTags, url);
+            if ((keywords != null && keywords != string.Empty ) && (url != null && url != string.Empty))
+            {
+                var editedString = StringBuilder(keywords);
+                var googleResults = await _googleSearchResultsRepository.GetSearchResultsHtmlAsync(editedString);
+                var scrappedGoogleLinkTags = ScrapeGoogleLinkTags(googleResults);
+                var targetedUrlList = FilterTargetedUrls(scrappedGoogleLinkTags, url);
 
 
-            var orderedPositionList = CreateOrderedPositionList(targetedUrlList);
+                var orderedPositionList = CreateOrderedPositionList(targetedUrlList);
 
-            return orderedPositionList == string.Empty ? "No Results found in the top 100" : orderedPositionList;
+                return orderedPositionList == string.Empty ? _appSettings.NoResultsMessage : orderedPositionList;
+            }
+
+            return _appSettings.EnterValuesMessage;
+                      
         }
 
         public string StringBuilder(string keywords)
@@ -41,9 +48,7 @@ namespace InfoTrack.Wrapper
 
         public IEnumerable<Match> ScrapeGoogleLinkTags(string googleResults)
         {
-            var htmlToMatch = WebConfigurationManager.AppSettings["HtmlToMatch"];
-
-            var regexMatches = Regex.Matches(googleResults, htmlToMatch);
+            var regexMatches = Regex.Matches(googleResults, _appSettings.HtmlToMatch);
             return regexMatches.Cast<Match>();
         }
 
