@@ -11,9 +11,10 @@ namespace InfoTrack.Repository
         public async Task<string> GetSearchResultsHtmlAsync(string keywords)
         {
             var googleUrl = WebConfigurationManager.AppSettings["GoogleUrl"];
+            var numberOfResults = WebConfigurationManager.AppSettings["NumberOfResults"];
             var client = new HttpClient();
         
-            return await client.GetStringAsync($"{googleUrl}num={100}&q={keywords}");
+            return await client.GetStringAsync($"{googleUrl}num={numberOfResults}&q={keywords}");
         }
 
     }
