@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2F0B97A1-CC8C-45AB-8C1A-543E77CCF4F0}</ProjectGuid>
+    <ProjectGuid>{7874C6C3-F9AD-4FD2-B363-5BB9382CBA49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>InfoTrackTests</RootNamespace>
@@ -72,11 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InfoTrack.csproj">
-      <Project>{005DE74E-C5F4-410C-9286-A7BF4E705998}</Project>
+      <Project>{005de74e-c5f4-410c-9286-a7bf4e705998}</Project>
       <Name>InfoTrack</Name>
     </ProjectReference>
   </ItemGroup>
