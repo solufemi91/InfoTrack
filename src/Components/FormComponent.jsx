@@ -9,7 +9,7 @@ class formComponent extends React.Component {
     render() {
         return (
             <form id="myForm">
-                <label htmlFor="Keywords">Keywords:</label>
+                <label htmlFor="Keywords">Keywordasass:</label>
                 <input type="text" id="Keywords" name="Keywords"></input><br></br>
 
                 <label htmlFor="Url">Url:</label>
